@@ -4,8 +4,15 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc"
   },
   "author": "Stanislav Tolstonozhenko",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "typeorm": "^0.3.20",
+    "winston": "^3.11.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.17"
+  }
 }

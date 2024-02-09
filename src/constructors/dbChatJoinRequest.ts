@@ -7,13 +7,11 @@ import { TelegramInviteLink } from "../schemes/models/telegramInviteLink.model";
 import { TelegramUserCreator } from "../schemes/models/telegramUserCreator.model";
 import { TelegramUserJoin } from "../schemes/models/telegramUserJoin.model";
 import { TelegramChatJoinRequestType, TelegramChatType, TelegramInviteLinkType, TelegramUserCreatorType, TelegramUserJoinType } from "../schemes/types";
-import { Infor } from "../../Infor";
 
 export class DbChatJoinRequest extends TypeormBase {
 
     constructor() {
         super("chatJoinRequest.db", [ChatJoinRequestModels]);
-        Infor.updateInfo("countSameChatJoinRequest", 0);
     }
 
     async createChatJoinRequest(data: TelegramChatJoinRequestType): Promise<void> {
@@ -40,7 +38,6 @@ export class DbChatJoinRequest extends TypeormBase {
             });
             if (telegramChatJoinRequest) {
                 await telegramChatJoinRequestRepository.update(telegramChatJoinRequest.id, data);
-                Infor.incrementInfo("countSameChatJoinRequest", 1);
             }else{
                 telegramChatJoinRequest = telegramChatJoinRequestRepository.create(data);
                 await telegramChatJoinRequestRepository.save(telegramChatJoinRequest);
